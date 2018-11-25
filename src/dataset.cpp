@@ -146,7 +146,9 @@ void DatasetArray::Add(Dataset *dataset)
 void DatasetArray::Remove(Dataset *dataset)
 {
     SAFE_UNREF(dataset);
-    DatasetArrayBase::Remove(dataset);
+    int n = Index(dataset);
+    wxCHECK_RET( n != wxNOT_FOUND, _WX_ERROR_REMOVE );
+    RemoveAt((size_t)n);
 }
 
 void DatasetArray::RemoveAt(size_t index, size_t count)
