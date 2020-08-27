@@ -108,6 +108,14 @@ double Axis::BoundValue(double value)
     }
 }
 
+/***
+ * Convert to wxCoord
+ * @param dc the drawing context
+ * @param minCoord the minimum coordinate
+ * @param gRange Unknown
+ * @param value unknown
+ * @returns the coordinate
+ ***/
 wxCoord Axis::ToGraphics(wxDC& WXUNUSED(dc), int minCoord, int gRange, double value)
 {
     double minValue, maxValue;
@@ -232,7 +240,17 @@ bool AxisShare::AcceptDataset(Dataset *dataset)
     return m_axis->AcceptDataset(dataset);
 }
 
-
+/*****
+ * Given the information about a data item, convert to a graphics coordinate
+ * @param minCoord the minimum coordinate
+ * @param gRange range
+ * @param minValue the minimum value
+ * @param maxValue the maximum value
+ * @param margin the margin
+ * @param vertical true if this axis is vertical
+ * @param value the value
+ * @returns the wxCoord
+ */
 wxCoord ToGraphics(int minCoord, int gRange, double minValue, double maxValue, wxCoord margin, bool vertical, double value)
 {
     double k;
@@ -255,6 +273,17 @@ wxCoord ToGraphics(int minCoord, int gRange, double minValue, double maxValue, w
     return (wxCoord) (k * gRange + minCoord);
 }
 
+/****
+ * Given graphics data, convert it to a data value
+ * @param minCoord the minimum coordinate
+ * @param gRange the range
+ * @param minValue the minimum value
+ * @param maxValue the maximum value
+ * @param margin the margin
+ * @param vertical true if this axis is vertical
+ * @param g the coordinate
+ * @returns the data
+ */
 double ToData(int minCoord, int gRange, double minValue, double maxValue, wxCoord margin, bool vertical, wxCoord g)
 {
     double valueRange = maxValue - minValue;

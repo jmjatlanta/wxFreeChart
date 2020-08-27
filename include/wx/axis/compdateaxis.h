@@ -94,7 +94,7 @@ private:
     wxCoord m_labelMargin; // distance between label and span area bounds
     AreaDraw *m_spanDraw;
 
-    wxDateSpanArray m_dateSpans;
+    wxDateSpanArray m_dateSpans; // collection of date spans
 };
 
 #endif /* COMPDATEAXIS_H_ */
